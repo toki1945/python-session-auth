@@ -1,0 +1,22 @@
+[project]
+name = "api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.19.1",
+    "argon2-cffi>=25.1.0",
+    "fastapi>=0.141.1",
+    "httpx>=0.28.1",
+    "passlib>=1.7.4",
+    "psycopg[binary]>=3.3.4",
+    "pydantic[email]>=2.0",
+    "python-dotenv>=1.2.2",
+    "ruff>=0.16.3",
+    "sqlalchemy>=2.0.52",
+    "uvicorn[standard]>=0.52.3",
+]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "Depends"]

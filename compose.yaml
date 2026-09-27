@@ -1,0 +1,34 @@
+services:
+
+  db:
+    image: postgres:16.9
+    volumes:
+      - python-session-auth:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: python-session-auth
+
+    ports:
+      - "127.0.0.1:5432:5432"
+
+  api:
+    build:
+        context: .
+        dockerfile: ./docker/api/Dockerfile
+    environment:
+      - WATCHFILES_FORCE_POLLING=true
+
+    volumes:
+      - ./api:/app/api
+
+    working_dir: /app/api
+
+    command: "uv run /app/api/main.py"
+
+    ports:
+      - "127.0.0.1:8000:8000"
+
+volumes:
+  python-session-auth:
+
